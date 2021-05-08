@@ -1,5 +1,5 @@
 {
-  "name": "steward-hr",
+  "name": "client-hr",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -9,6 +9,9 @@
     "lint": "ng lint"
   },
   "private": true,
+  "resolutions": {
+    "webpack": "^5.0.0"
+  },
   "dependencies": {
     "@angular/animations": "~11.2.11",
     "@angular/common": "~11.2.11",
