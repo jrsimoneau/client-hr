@@ -9,7 +9,7 @@ NOTE: Set GLOBAL ng config to use yarn instead of npm - yarn is recommended for 
 
 2. Create a new app in the workspace: shell `ng g application shell`
 
-## Current Branch Steps
+## Branch - feature/setup-webpack
 1. Updated package.json to use webpack 5.0.0:
 ```
   
@@ -23,7 +23,7 @@ NOTE: Set GLOBAL ng config to use yarn instead of npm - yarn is recommended for 
     ...
 
 ```
-2, Running `ng serve` I'm seeing a "DeprecationWarning":
+2. Running `ng serve` I'm seeing a "DeprecationWarning":
 ```
 (node:21416) [DEP_WEBPACK_DEPRECATION_ARRAY_TO_SET_INDEXER] DeprecationWarning: chunk.files was changed from Array to Set (indexing Array is deprecated)
 ```
@@ -160,3 +160,4 @@ warning " > karma-jasmine-html-reporter@1.6.0" has incorrect peer dependency "ja
 16. Ran `ng serve` - no issues.
 17. Ran `ng serve ng serve --project mfe-app` - no issues.
 
+## Branch - feature/add-webpack-mod-federation
