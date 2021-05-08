@@ -4,3 +4,5 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 1. Create workspace in angular
 NOTE: Set GLOBAL ng config to use yarn instead of npm - yarn is recommended for using webpack 5, until Angular12.
+
+2. Createda new app in the workspace: shell `ng g application shell`
