@@ -210,3 +210,4 @@ platformBrowserDynamic().bootstrapModule(AppModule)
 
 import ('./bootstrap');
 ```
+Ran `ng serve` for both apps. They both work.
