@@ -161,3 +161,52 @@ warning " > karma-jasmine-html-reporter@1.6.0" has incorrect peer dependency "ja
 17. Ran `ng serve ng serve --project mfe-app` - no issues.
 
 ## Branch - feature/add-webpack-mod-federation
+host-webpack-config.js & mfe-webpack-config.js
+```
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+
+module.exports = {
+  output: {
+    uniqueName: "mfe",
+  },
+  plugins: [
+    new ModuleFederationPlugin({
+      shared: {
+        "@angular/core": { singleton: true, strictVersion: true },
+        "@angular/common": { singleton: true, strictVersion: true },
+        "@angular/router": { singleton: true, strictVersion: true },
+      },
+    }),
+  ],
+};
+```
+
+Running `ng serve` we get an error in the Browser console: `Uncaught Error: Shared module is not available for eager consumption: 6139`
+
+To fix this we need to create a new file called `bootstrap.ts` in both the shell & mfe-app. Cut the contents from `main.ts` and place it into that file. Now, in main.ts for both files - import the bootstrap file. 
+
+```
+// shell > src > bootstrap.ts
+// AND
+// mfe-app > src > bootstrap.ts
+
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
+
+if (environment.production) {
+  enableProdMode();
+}
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));
+```
+
+```
+// shell > src > main.ts
+// mfe-app > src > main.ts
+
+import ('./bootstrap');
+```
