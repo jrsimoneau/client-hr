@@ -1,5 +1,15 @@
 # Client HR - Proof of Concept using Webpack's Module Federation
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.10.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.10. 
+
+[Reference on Module Federation in Angular (YouTube link)](https://www.youtube.com/watch?app=desktop&v=T0vM7GjDVY4&feature=youtu.be).
+
+## Proof of Concept Goals
+1. A shell component with a login, using authguards we'll login once and when we're authenticated we can access other pages.
+2. Using Webpack's Module Federation, we are going to have the shell load other frameworks on a page. 
+    - Angular11 app
+    - AngularJS app
+    - Vue app
+    - React app
 
 ## Previous Steps Completed
 
@@ -161,6 +171,7 @@ warning " > karma-jasmine-html-reporter@1.6.0" has incorrect peer dependency "ja
 17. Ran `ng serve ng serve --project mfe-app` - no issues.
 
 ## Branch - feature/add-webpack-mod-federation
+
 host-webpack-config.js & mfe-webpack-config.js
 ```
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
@@ -287,3 +298,8 @@ For both webpack configs. Need to add -
 ```
 
 Restart both apps. It works. Our home application is loading the contents from the lazy.module in the project!
+
+## Branch - feature/angularjs-application-setup
+For the next goal of the POC, we need to load legacy applications inside of our shell component.
+1. Create another repo using AngularJS
+
