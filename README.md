@@ -211,3 +211,24 @@ platformBrowserDynamic().bootstrapModule(AppModule)
 import ('./bootstrap');
 ```
 Ran `ng serve` for both apps. They both work.
+
+Now, we're going to implement the container plugin
+- name: is the name of the container for the app
+- filename: is the contents of what has been extracted
+- exposes: name of the module 
+```
+// mfe-webpack-config.js
+
+    ...
+    "@angular/router": { singleton: true, strictVersion: true },
+  },
+  name: "mfe",
+  filename: "mfe.js",
+  exposes: {
+    "./MFEModule": "./projects/mfe-app/src/app/lazy/lazy.module.ts"
+  }
+}),
+...
+```
+
+Created a new lazy.component to follow along with video along with a home.component.ts file. Ran `ng serve --project mfe-app` no errors.
