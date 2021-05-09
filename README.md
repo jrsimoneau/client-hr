@@ -1,4 +1,4 @@
-# Client HR
+# Client HR - Proof of Concept using Webpack's Module Federation
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.10.
 
 ## Previous Steps Completed
@@ -232,3 +232,58 @@ Now, we're going to implement the container plugin
 ```
 
 Created a new lazy.component to follow along with video along with a home.component.ts file. Ran `ng serve --project mfe-app` no errors.
+
+
+Added a remotes property to host-webpack-config.js. In the value of the mfe property, we're saying that "mfe" is the name of the container, and the file from that container that needs to be loaded (http://localhost:4100/mfe.js)
+```
+    ...
+    "@angular/router": { singleton: true, strictVersion: true },
+  },
+  remotes: {
+    mfe: "mfe@http://localhost:4300/mfe.js",
+  }
+```
+
+The configuration is complete.
+
+To load the application in the host/shell component - need to add the following to app.routing.module.ts
+
+```
+// shell > app.routing.module.ts
+
+const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'lazy',
+    loadChildren: () =>
+      import('mfe/MFEModule').then((m) => {
+        return m.LazyModule;
+      }),
+  },
+];
+```
+
+NOTE: we're seeing a message about how it cannot find the 'mfe/MFEModule' -  we need to add a type definition for it. Create a new file:  mfe.d.ts - located in shell > src > app directory:
+
+```
+declare module 'mfe/MFEModule';
+```
+
+Restart the apps - no errors.
+
+For both webpack configs. Need to add - 
+```
+    ...
+  },
+  optimization: {
+    runtimeChunk: false,
+  },
+  plugins: [
+    ...
+```
+
+Restart both apps. It works. Our home application is loading the contents from the lazy.module in the project!

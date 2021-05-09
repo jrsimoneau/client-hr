@@ -4,6 +4,9 @@ module.exports = {
   output: {
     uniqueName: "host",
   },
+  optimization: {
+    runtimeChunk: false,
+  },
   plugins: [
     new ModuleFederationPlugin({
       shared: {
@@ -11,6 +14,9 @@ module.exports = {
         "@angular/common": { singleton: true, strictVersion: true },
         "@angular/router": { singleton: true, strictVersion: true },
       },
+      remotes: {
+        mfe: "mfe@http://localhost:4300/mfe.js",
+      }
     }),
   ],
 };

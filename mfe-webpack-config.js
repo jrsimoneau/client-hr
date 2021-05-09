@@ -4,6 +4,9 @@ module.exports = {
   output: {
     uniqueName: "mfe",
   },
+  optimization: {
+    runtimeChunk: false,
+  },
   plugins: [
     new ModuleFederationPlugin({
       shared: {
@@ -14,7 +17,7 @@ module.exports = {
       name: "mfe",
       filename: "mfe.js",
       exposes: {
-        "./MFEModule": "./projects/mfe-app/src/app/lazy/lazy.component.ts",
+        "./MFEModule": "./projects/mfe-app/src/app/lazy/lazy.module.ts",
       }
     }),
   ],
