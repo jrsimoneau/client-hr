@@ -11,6 +11,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     - Vue app
     - React app
 
+## Instructions to get both apps up and running
+1. run `yarn install`
+2. run `ng serve` from the workspace in one terminal (running on http://localhost:4200)
+3. run `ng serve --project mfe-app` from the other terminal (running on http://localhost:4300)
+4. You'll know everything is working correctly when you visit: http://localhost:4200/lazy/home
+
 ## Previous Steps Completed
 
 1. Create workspace in angular
@@ -299,7 +305,15 @@ For both webpack configs. Need to add -
 
 Restart both apps. It works. Our home application is loading the contents from the lazy.module in the project!
 
+
+
 ## Branch - feature/angularjs-application-setup
 For the next goal of the POC, we need to load legacy applications inside of our shell component.
-1. Create another repo using AngularJS
+
+NOTE: Using yarn because of webpack 5.
+1. Installing webpack & webpack-cli globally: `npm install -g webpack webpack-cli`
+2. Created another directory inside of our project: angularjs-poc-2 [AngularJS Sample Tutorial App](https://github.com/angular/angular-phonecat)
+3. With this [repo](https://github.com/jrsimoneau/angularjs-module-federation) - we're trying to use Module Federation in AngularJS
+    
+
 
