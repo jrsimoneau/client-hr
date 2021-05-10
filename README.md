@@ -344,3 +344,7 @@ NOTE: Using yarn because of webpack 5.
 
     - This error is possibly from referencing an angularjs cdn and not referencing it locally. Investigating and implementing a fix
 
+
+### Fix for angularjs reference - steps
+1. Adding angular package in this app (testing)
+
