@@ -16,6 +16,7 @@ module.exports = {
       },
       remotes: {
         mfe: "mfe@http://localhost:4300/mfe.js",
+        mfe2: "mfe2@http://localhost:8080/mfe2-ngjs.js"
       }
     }),
   ],
