@@ -15,6 +15,13 @@ const routes: Routes = [
         return m.LazyModule;
       }),
   },
+  {
+    path: 'angular-js',
+    loadChildren: () =>
+      import('mfe2/MFE2Module').then((m) => {
+        return m.simpleApp;
+      })
+  }
 ];
 
 @NgModule({

@@ -1,7 +1,7 @@
 # Client HR - Proof of Concept using Webpack's Module Federation
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.10. 
 
-[Reference on Module Federation in Angular (YouTube link)](https://www.youtube.com/watch?app=desktop&v=T0vM7GjDVY4&feature=youtu.be).
+[Reference on Module Federation in Angular (YouTube link)](https://www.youtube.com/watch?app=desktop&v=T0vM7GjDVY4&feature=youtu.be). NOTE: Module Federation requires that the apps are running (locally or in prod) for it to grab the generated .js for module federation to work.
 
 ## Proof of Concept Goals
 1. A shell component with a login, using authguards we'll login once and when we're authenticated we can access other pages.
@@ -11,11 +11,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     - Vue app
     - React app
 
-## Instructions to get both apps up and running
+## Instructions to get apps up and running
 1. run `yarn install`
 2. run `ng serve` from the workspace in one terminal (running on http://localhost:4200)
 3. run `ng serve --project mfe-app` from the other terminal (running on http://localhost:4300)
 4. You'll know everything is working correctly when you visit: http://localhost:4200/lazy/home
+5. Run the AngularJS application at [this repo](https://github.com/jrsimoneau/angularjs-for-module-federation)
 
 ## Previous Steps Completed
 
@@ -313,7 +314,37 @@ For the next goal of the POC, we need to load legacy applications inside of our 
 NOTE: Using yarn because of webpack 5.
 1. Installing webpack & webpack-cli globally: `npm install -g webpack webpack-cli`
 2. Created another directory inside of our project: angularjs-poc-2 [AngularJS Sample Tutorial App](https://github.com/angular/angular-phonecat)
-3. With this [repo](https://github.com/jrsimoneau/angularjs-module-federation) - we're trying to use Module Federation in AngularJS
-    
+3. With this [repo](https://github.com/jrsimoneau/angularjs-for-module-federation) - we're trying to use Module Federation in AngularJS
+4. The AngularJS app is running, and a file has been generated to use in the host-webpack-config.js - add the remote for the angularjs app
+
+    ```
+    // host-webpackconfig.js
+    ...
+    remotes: {
+      mfe2: "mfe2@http://localhost:8080/mfe2-ngjs.js"
+    }
+    ```
+5. Updated app-routing.module.ts (shell project), included the path for the angularjs app:
+    ```
+    ...
+    {
+    path: 'angular-js',
+    loadChildren: () =>
+      import('mfe2/MFE2Module').then((m) => {
+        return m.simpleApp;
+      })
+    }
+    ...
+    ```
+6. Start the shell and mfe apps - all apps are running. ERROR when visiting http://localhost:4200/angular-js 
+    ```
+    ERROR Error: Uncaught (in promise): ReferenceError: angular is not defined
+    ReferenceError: angular is not defined
+    ```   
+
+    - This error is possibly from referencing an angularjs cdn and not referencing it locally. Investigating and implementing a fix
 
 
+### Fix for angularjs reference - steps
+1. Adding angular package in this app (testing)
+2. I'm not certain if Module Federation can be used for an angularjs project. Setting this aside. Fallback would be using an iframe to host the angularjs app.
