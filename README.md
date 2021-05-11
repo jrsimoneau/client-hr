@@ -347,4 +347,4 @@ NOTE: Using yarn because of webpack 5.
 
 ### Fix for angularjs reference - steps
 1. Adding angular package in this app (testing)
-
+2. I'm not certain if Module Federation can be used for an angularjs project. Setting this aside. Fallback would be using an iframe to host the angularjs app.
