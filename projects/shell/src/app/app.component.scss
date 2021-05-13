@@ -1,0 +1,14 @@
+.header-container {
+  display: flex;
+  padding: 20px 100px;
+  background-color: #0099cc;
+  align-items: center;
+  justify-content: space-between;
+  h1 {
+    color: #fff;
+    margin: 0;
+  }
+  .header-container {
+    align-content: flex-end;
+  }
+}
