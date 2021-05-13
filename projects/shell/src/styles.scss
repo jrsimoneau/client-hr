@@ -1,1 +1,53 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  padding: 10px;
+  border-radius: 4px;
+  border: thin solid #ccc;
+  box-sizing: border-box;
+}
+
+label {
+  color: #333;
+}
+
+button {
+  cursor: pointer;
+}
+
+.primary-button {
+  background-color: #0099cc;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-weight: bold;
+  &:hover {
+    opacity: 80%;
+  }
+  &:disabled {
+    opacity: 50%
+  }
+}
+
+.secondary-button {
+  background-color: #fff;
+  border: thin solid #007da7;
+  color: #0099cc;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-weight: bold;
+  &:hover {
+    opacity: 80%;
+  }
+  &:disabled {
+    opacity: 50%
+  }
+}
